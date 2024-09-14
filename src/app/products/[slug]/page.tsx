@@ -1,4 +1,5 @@
 import { delay } from "@/lib/utils";
+import { getWixServerClient } from "@/lib/wix-client.server";
 import { getProductBySlug } from "@/wix-api/products";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -11,7 +12,7 @@ interface PageProps {
 export async function generateMetadata({
   params: { slug },
 }: PageProps): Promise<Metadata> {
-  const product = await getProductBySlug(slug);
+  const product = await getProductBySlug(getWixServerClient(), slug);
 
   if (!product) notFound();
 
@@ -38,7 +39,7 @@ export async function generateMetadata({
 export default async function Page({ params: { slug } }: PageProps) {
   await delay(3000);
 
-  const product = await getProductBySlug(slug);
+  const product = await getProductBySlug(getWixServerClient(), slug);
 
   if (!product?._id) notFound();
 
