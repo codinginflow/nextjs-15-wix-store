@@ -1,4 +1,5 @@
 import logo from "@/assets/logo.png";
+import SearchField from "@/components/SearchField";
 import UserButton from "@/components/UserButton";
 import { getWixServerClient } from "@/lib/wix-client.server";
 import { getCart } from "@/wix-api/cart";
@@ -28,6 +29,7 @@ export default async function Navbar() {
           </Link>
           <MainNavigation collections={collections} />
         </div>
+        <SearchField className="max-w-96" />
         <div className="flex items-center justify-center gap-5">
           <UserButton loggedInMember={loggedInMember} />
           <ShoppingCartButton initialData={cart} />
