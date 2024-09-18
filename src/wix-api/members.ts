@@ -15,3 +15,26 @@ export const getLoggedInMember = cache(
     return memberData.member || null;
   },
 );
+
+export interface UpdateMemberInfoValues {
+  firstName: string;
+  lastName: string;
+}
+
+export async function updateMemberInfo(
+  wixClient: WixClient,
+  { firstName, lastName }: UpdateMemberInfoValues,
+) {
+  const loggedInMember = await getLoggedInMember(wixClient);
+
+  if (!loggedInMember?._id) {
+    throw Error("No member ID found");
+  }
+
+  return wixClient.members.updateMember(loggedInMember._id, {
+    contact: {
+      firstName,
+      lastName,
+    },
+  });
+}
