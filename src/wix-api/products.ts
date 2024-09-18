@@ -1,3 +1,4 @@
+import { WIX_STORES_APP_ID } from "@/lib/constants";
 import { WixClient } from "@/lib/wix-client.base";
 import { cache } from "react";
 
@@ -69,8 +70,6 @@ export async function queryProducts(
 
 export const getProductBySlug = cache(
   async (wixClient: WixClient, slug: string) => {
-    console.log("getProductBySlug");
-
     const { items } = await wixClient.products
       .queryProducts()
       .eq("slug", slug)
@@ -86,3 +85,44 @@ export const getProductBySlug = cache(
     return product;
   },
 );
+
+export async function getRelatedProducts(
+  wixClient: WixClient,
+  productId: string,
+) {
+  const result = await wixClient.recommendations.getRecommendation(
+    [
+      {
+        _id: "68ebce04-b96a-4c52-9329-08fc9d8c1253", // "From the same categories"
+        appId: WIX_STORES_APP_ID,
+      },
+      {
+        _id: "d5aac1e1-2e53-4d11-85f7-7172710b4783", // Frequenly bought together
+        appId: WIX_STORES_APP_ID,
+      },
+    ],
+    {
+      items: [
+        {
+          appId: WIX_STORES_APP_ID,
+          catalogItemId: productId,
+        },
+      ],
+      minimumRecommendedItems: 3,
+    },
+  );
+
+  const productIds = result.recommendation?.items
+    .map((item) => item.catalogItemId)
+    .filter((id) => id !== undefined);
+
+  if (!productIds || !productIds.length) return [];
+
+  const productsResult = await wixClient.products
+    .queryProducts()
+    .in("_id", productIds)
+    .limit(4)
+    .find();
+
+  return productsResult.items;
+}
