@@ -20,8 +20,6 @@ export default function Layout({ children, params }: LayoutProps) {
 }
 
 async function CollectionsLayout({ children, params: { slug } }: LayoutProps) {
-  await delay(2000);
-
   const collection = await getCollectionBySlug(getWixServerClient(), slug);
 
   if (!collection) notFound();

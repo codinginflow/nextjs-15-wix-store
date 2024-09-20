@@ -46,8 +46,6 @@ export default function Home() {
 }
 
 async function FeaturedProducts() {
-  await delay(1000);
-
   const wixClient = getWixServerClient();
 
   const collection = await getCollectionBySlug(wixClient, "featured-products");

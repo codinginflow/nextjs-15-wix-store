@@ -71,8 +71,6 @@ async function ProductResults({
   priceMax,
   sort,
 }: ProductResultsProps) {
-  await delay(1000);
-
   const pageSize = 8;
 
   const products = await queryProducts(getWixServerClient(), {
