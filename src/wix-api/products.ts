@@ -102,7 +102,7 @@ export async function getRelatedProducts(
         appId: WIX_STORES_APP_ID,
       },
       {
-        _id: "d5aac1e1-2e53-4d11-85f7-7172710b4783", // Frequenly bought together
+        _id: "d5aac1e1-2e53-4d11-85f7-7172710b4783", // "Frequenly bought together"
         appId: WIX_STORES_APP_ID,
       },
     ],

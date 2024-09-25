@@ -1,7 +1,7 @@
 import { wixBrowserClient } from "@/lib/wix-client.browser";
 import {
-    BackInStockNotificationRequestValues,
-    createBackInStockNotificationRequest,
+  BackInStockNotificationRequestValues,
+  createBackInStockNotificationRequest,
 } from "@/wix-api/backInStockNotifications";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "./use-toast";

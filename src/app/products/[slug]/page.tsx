@@ -1,7 +1,6 @@
 import Product from "@/components/Product";
 import CreateProductReviewButton from "@/components/reviews/CreateProductReviewButton";
 import { Skeleton } from "@/components/ui/skeleton";
-import { delay } from "@/lib/utils";
 import { getWixServerClient } from "@/lib/wix-client.server";
 import { getLoggedInMember } from "@/wix-api/members";
 import { getProductBySlug, getRelatedProducts } from "@/wix-api/products";

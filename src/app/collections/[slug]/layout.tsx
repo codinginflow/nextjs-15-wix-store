@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import WixImage from "@/components/WixImage";
-import { cn, delay } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { getWixServerClient } from "@/lib/wix-client.server";
 import { getCollectionBySlug } from "@/wix-api/collections";
 import { notFound } from "next/navigation";

@@ -27,7 +27,7 @@ export default function Order({ order }: OrderProps) {
     [orders.FulfillmentStatus.PARTIALLY_FULFILLED]: "Partially delivered",
   };
 
-  const paymenStatus = order.paymentStatus
+  const paymentStatus = order.paymentStatus
     ? paymentStatusMap[order.paymentStatus]
     : null;
 
@@ -68,7 +68,7 @@ export default function Order({ order }: OrderProps) {
                     "bg-green-500 text-white",
                 )}
               >
-                {paymenStatus || "No information"}
+                {paymentStatus || "No information"}
               </Badge>
             </div>
             <div className="font-semibold">
